@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import Message from "./Message";
-import db from "./firebase";
+//import db from "./firebase";
 
 function App() {
   const [input, setInput] = useState("");
@@ -12,12 +12,14 @@ function App() {
   useEffect(() => {
     setUsername(prompt("Please enter your name"));
   }, []);
+
 //
-useEffect(()=>{
-  db.collection('messages').onSnapshot(snapshot=>{
-    setMessage(snapshot.docs.map(doc => doc.data()))
-  })
-},[]);
+// useEffect(()=>{
+//   db.collection('messages').onSnapshot(snapshot=>{
+//     setMessage(snapshot.docs.map(doc => doc.data()))
+//   })
+// },[]);
+
   const sendMessage = (event) => {
     //...message appends text at the end of array
     event.preventDefault();
