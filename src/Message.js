@@ -10,10 +10,10 @@ import './Message.css';
         <Card className={isUser ?"message_userCard":"message_guestCard"} >
         <CardContent >
         <Typography
-        color="white"
+        color="initial"
         variant="h5"
         component="h2">
-        {message.username}:{message.text}
+        {message.username}:{message.message}
         </Typography>
         </CardContent>
         </Card>
@@ -22,4 +22,4 @@ import './Message.css';
     )
 }
 
-export default Message
+export default Message;
