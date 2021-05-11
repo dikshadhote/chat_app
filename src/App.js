@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import Message from "./Message";
 import db from "./firebase";
@@ -17,7 +17,7 @@ function App() {
   }, []);
 
 useEffect(()=>{
-  db.collection('messages').orderBy('timestamp','desc').onSnapshot(snapshot =>{
+  db.collection('messages').orderBy('timestamp','asc').onSnapshot(snapshot =>{
     setMessage(snapshot.docs.map(
       doc => ({id:doc.id,message:doc.data()})
       ))
@@ -36,9 +36,11 @@ useEffect(()=>{
       
     
     setInput("");
+    dummy.current.scrollIntoView({behavior : 'smooth',block: 'end'});
   };
-
+  const dummy=useRef(null);
   return (
+    
     <div className="App" >
       <header className="App-header">
         <div  style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}} >
@@ -68,6 +70,7 @@ useEffect(()=>{
           <Message key={id} username={username} message={message} />
         ))}
         </FlipMove>
+        <div ref={dummy}></div>
       </header>
     </div>
   );
